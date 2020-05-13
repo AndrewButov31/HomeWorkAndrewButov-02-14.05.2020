@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork(02.05.2020-14.05.2020)</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/index.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Работа с DOM</h2>
+<h4>7. Создайте кнопку, которая подсчитывает количество нажатий на нее.</h4>
+<input type="button" id="cliBut" value="Нажата 0 раз">
+<h4>8. Добавьте порядковый номер текстового абзаца в его начале при нажатии на кнопку</h4>
+<p>Hello world 1</p>
+<p>Hello world 2</p>
+<p>Hello world 3</p>
+<p>Hello world 1</p>
+<p>Hello world 2</p>
+<p>Hello world 3</p>
+<input type="button" id="serialNumber" value="Порядковый номер">
+<h4>9. Даны дивы div. По первому нажатию на каждый див он окрасится синим фоном,
+    по второму красится обратно и так далее каждый клик происходит чередование фона.
+    Сделайте так, чтобы было две функции: одна красит в синий цвет, другая в зеленый
+    например, и они сменяли друг друга через removeEventListener</h4>
+<div>1</div>
+<div>2</div>
+<script>
+    console.group('Работа с DOM');
+    console.group('Задание 7');
+    console.log("7. Создайте кнопку, которая подсчитывает количество нажатий на нее.");
+        let cliBut = document.getElementById("cliBut");
+        cliBut.onclick = numberOfClicks;
+            function numberOfClicks(){
+            let t = this.value.split(' ');
+            ++t [1];
+            this.value = t.join(' ')
+        }
+    console.groupEnd ('Задание 7');
+    console.group('Задание 8');
+    console.log("8. Добавьте порядковый номер текстового абзаца в его начале при нажатии на кнопку.");
+    let serialNumber = document.getElementById("serialNumber");
+    serialNumber.onclick = indexNumber;
+        function indexNumber(){
+        let parag = document.getElementsByTagName("p");
+        for (let i = 0; i <= parag.length; i++) {
+            parag[i].insertAdjacentText('afterBegin', `${i+1} `);
+        }
+    }
+    console.groupEnd ('Задание 8');
+    console.group('Задание 9');
+    console.log("*9. Даны дивы div. По первому нажатию на каждый див он окрасится синим фоном, по второму красится " +
+        "обратно и так далее каждый клик происходит чередование фона. Сделайте так, чтобы было две функции: одна красит " +
+        "в синий цвет, другая в зеленый например, и они сменяли друг друга через removeEventListener. (Не сделал через removeEventListener" +
+        " сделал через onclick и ondblclick)");
+    let box = document.getElementsByTagName("div");
+    for (let i = 0; i < box.length; i++)
+        box[i].onclick = coloringInBlueBackground;
+            function coloringInBlueBackground() {
+                if (this.style.backgroundColor == "")
+                {
+                    this.style.backgroundColor = "blue";
+                }else
+                {
+                    this.style.backgroundColor = ""
+                }
+            }
+    for (let i = 0; i < box.length; i++) {
+        box[i].ondblclick = coloringInGreenBackground;
+            function coloringInGreenBackground() {
+                if (this.style.backgroundColor == "") {
+                    this.style.backgroundColor = "green";
+                } else {
+                    this.style.backgroundColor = ""
+                }
+            }
+    }
+    console.groupEnd ('Задание 9');
+    console.groupEnd ('Работа с DOM');
+</script>
+</body>
+</html>
